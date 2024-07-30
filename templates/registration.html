@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Register Here{% endblock title %}
+
+{% block body %}
+
+<div style="display: flex; justify-content: space-around">
+    <div style="padding: 8% 0% 0% 2%">
+      <img src="../static/images/registration.png" height=400px weight=400px>
+    </div>
+    <div class="form-container mx-4 my-4" style = "width: 40%">
+        <h1 style="text-align: center" id="title">Job Seeker Registration</h1>
+        <form method="POST" action="\registration">
+            {% csrf_token %}
+            <div class="form-floating my-2 ">
+                <input type="text" class="form-control" id="floatingInput" placeholder="name" name="name" required>
+                <label for="floatingInput">Name</label>
+            </div>
+            <div class="form-floating">
+                <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="gender" required>
+                <option selected disabled>None</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+                </select>
+                <label for="floatingSelect">Select Gender</label>
+            </div>    
+            <div class="form-floating my-2">
+                <textarea class="form-control" placeholder="Enter Your Address here" id="floatingTextarea2" style="height: 100px" name="address" required></textarea>
+                <label for="floatingTextarea2">Resedential Address</label>
+            </div>
+            <div class="form-floating">
+                <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="city" required>
+                <option selected disabled>None</option>
+                {% for city in cities %}
+                <option>{{city.city}}</option>
+                {% endfor %}
+                </select>
+                <label for="floatingSelect">Select City</label>
+            </div>
+            <div class="form-floating my-2 ">
+                <input type="phone" class="form-control" id="floatingInput" name="contactno" placeholder="phone number" required>
+                <label for="floatingInput">Contact Number</label>
+            </div>
+            <div class="form-floating my-2 ">
+                <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" required>
+                <label for="floatingInput">Email address</label>
+            </div>
+            <select class="form-select my-2" size = "3" multiple aria-label="multiple select example" name="qualification" required>
+                <option selected disabled>Select Qualification</option>
+                {% for degree in qualification %}
+                <option>{{degree.qualification}}</option>
+                {% endfor %}
+            </select>
+            <div class="form-floating my-2 ">
+                <input type="file" class="form-control" id="file-upload" accept=".pdf" name="file" placeholder="Upload File" required>
+                <label for="floatingInput">Upload File</label>
+            </div>
+            <div class="g-recaptcha" data-sitekey="6LfXwWggAAAAAPB2Q4C4qzhEPFjMYLyBo7H3V8DE"></div>
+            <br>
+            <div class="col-auto">
+            <button type="submit" onclick="return VerifyUploadSizeIsOK()" class="btn btn-primary mb-3">Submit</button>
+            </div>
+        </form>
+        
+    </div>
+</div>
+
+<script type="text/javascript">
+    function VerifyUploadSizeIsOK()
+    {
+       var UploadFieldID = "file-upload";
+       var MaxSizeInBytes = 5242880/5;
+       var fld = document.getElementById(UploadFieldID);
+       if( fld.files && fld.files.length == 1 && fld.files[0].size > MaxSizeInBytes )
+       {
+          alert("The file size must be no more than " + parseInt(MaxSizeInBytes/1024/1024) + "MB");
+          return false;
+       }
+       return true;
+    } // function VerifyUploadSizeIsOK()
+</script>
+
+{% endblock body %}
