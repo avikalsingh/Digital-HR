@@ -1,0 +1,86 @@
+{% extends 'admin_zone/admin_home.html' %}
+
+{% block title %}Update Employee{% endblock title %}
+
+{% block body %}
+<div style="display: flex; justify-content: space-around">
+    <div style="padding: 8% 0% 0% 2%">
+      <img src="../static/images/job_admin.png" height=400px weight=400px>
+    </div>
+    <div class="form-container mx-4 my-4" style="width: 40%">
+        <h1 style="text-align: center" id="title">Update Employee</h1>
+        <form method="POST" action="\update_emp?empid={{employee.empid}}">
+            {% csrf_token %}
+            <div class="form-floating my-2 ">
+                <input disabled type="text" value="{{employee.empid}}" class="form-control" id="floatingInput" placeholder="employee id" name="empid" required>
+                <label for="floatingInput">Employee Id</label>
+            </div>
+            <div class="form-floating my-2 ">
+                <input type="text" value="{{employee.name}}" class="form-control" id="floatingInput" placeholder="name" name="name" required>
+                <label for="floatingInput">Name</label>
+            </div>
+            <div class="form-floating my-2 ">
+                <input type="text"  value="{{employee.fname}}" class="form-control" id="floatingInput" placeholder="father name" name="fname" required>
+                <label for="floatingInput">Father Name</label>
+            </div>
+            <div class="form-floating my-2 ">
+                <input type="text"  value="{{employee.mname}}" class="form-control" id="floatingInput" placeholder="mother name" name="mname" required>
+                <label for="floatingInput">Mother Name</label>
+            </div>
+            <div class="form-floating">
+                <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="gender" required>
+                <option selected>{{employee.gender}}</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+                </select>
+                <label for="floatingSelect">Select Gender</label>
+            </div>    
+            <div class="form-floating my-2">
+                <textarea class="form-control" placeholder="Enter Your Address here" id="floatingTextarea2" style="height: 100px" name="address" required>{{employee.address}}</textarea>
+                <label for="floatingTextarea2">Resedential Address</label>
+            </div>
+            <div class="form-floating">
+                <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="city" required>
+                <option selected>{{employee.city}}</option>
+                {% for city in cities %}
+                <option>{{city.city}}</option>
+                {% endfor %}
+                </select>
+                <label for="floatingSelect">Select City</label>
+            </div>
+            <div class="form-floating my-2 ">
+                <input type="phone" class="form-control"  value="{{employee.contactno}}" id="floatingInput" name="contactno" placeholder="phone number" required>
+                <label for="floatingInput">Contact Number</label>
+            </div>
+            <div class="form-floating my-2 ">
+                <input type="email"  value="{{employee.email}}" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" required>
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating my-2 ">
+                <input type="text" class="form-control" value="{{employee.department}}" id="floatingInput" placeholder="department name" name="department" required>
+                <label for="floatingInput">Department</label>
+            </div>
+            <div class="form-floating my-2 ">
+                <input type="text" class="form-control" value="{{employee.designation}}" id="floatingInput" placeholder="Designation" name="designation" required>
+                <label for="floatingInput">Designation</label>
+            </div>
+            <div class="form-floating my-2 ">
+                <input type="date" class="form-control" value="{{employee.dob|date:"Y-m-d"}}" id="floatingInput" placeholder="dob" name="dob" required/>
+                <label for="floatingInput">Date of Birth</label>
+            </div>
+            <div class="form-floating my-2 ">
+                <input type="date" class="form-control" value="{{employee.doj|date:"Y-m-d"}}" id="floatingInput" placeholder="doj" name="doj" required>
+                <label for="floatingInput">Date of Joining</label>
+            </div>
+            <div class="form-floating my-2 ">
+                <input type="text" class="form-control" value="{{employee.salary}}" id="floatingInput" placeholder="Salary" name="salary" required>
+                <label for="floatingInput">Salary</label>
+            </div>
+            <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock body %}

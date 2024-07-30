@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Login{% endblock title %}
+
+{% block body %}
+
+<div class="text-center" style="padding: 25px 30%; margin:flex">
+    
+    <main class="form-signin">
+      <form method = "POST", action="/admin_login">
+        {% csrf_token %}
+        <img class="my-4" src ="..\static\images\logo4.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 fw-normal" id="title">Please sign in</h1>
+    
+        <div class="form-floating mb-2">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="admin_email">
+          <label for="floatingInput">Email Address</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="admin_pwd">
+          <label for="floatingPassword">Password</label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary my-4" type="submit">Sign in</button>
+      </form>
+    </main>
+
+</div>
+{% endblock body %}

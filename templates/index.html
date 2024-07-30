@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+<style>
+.heading {
+  text-align: center;
+  color: rgba(255,255,255,1);
+  font-size: 150px;
+  transition: 1.5s;
+}
+
+.para {
+  text-align: center;
+  color: rgba(255,255,255,0.2);
+  font-size: 18px;
+  padding: 0% 10% 10%;
+  transition: 1.5s;
+}
+
+.para:hover {
+  text-align: center;
+  color: rgba(255,255,255,1);
+  font-size: 18px;
+  padding: 2px 10% 10%;
+  transition: 1.5s;
+}
+
+</style>
+<div style="display: flex; justify-content: space-around">
+  <div style="padding: 5% 0% 0% 3%">
+    <img src="../static/images/home_image1.png" height=400px weight=400px>
+  </div>
+  <div id="content">
+    <p class="heading">DIGITAL HR</p>
+    <p class="para">This project is made for the ElectrotechEngg Solutions, Roorkie who want to make implement ‘PAPERLESS OFFICE’ in field of Human Resource Management. The purpose of the project in organizational perspective is to generate a fully computerized human resource system. All Data of the related share is needed to be present on the system so that whenever there is a need to view process or extract any information it can be done. It saves time and avoids losses.</p>
+  </div>
+</div>
+{% endblock body %}
