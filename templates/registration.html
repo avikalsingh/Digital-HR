@@ -1,84 +1,228 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Register Here{% endblock title %}
 
 {% block body %}
 
-<div style="display: flex; justify-content: space-around">
-    <div style="padding: 8% 0% 0% 2%">
-      <img src="../static/images/registration.png" height=400px weight=400px>
-    </div>
-    <div class="form-container mx-4 my-4" style = "width: 40%">
-        <h1 style="text-align: center" id="title">Job Seeker Registration</h1>
-        <form method="POST" action="\registration">
-            {% csrf_token %}
-            <div class="form-floating my-2 ">
-                <input type="text" class="form-control" id="floatingInput" placeholder="name" name="name" required>
-                <label for="floatingInput">Name</label>
-            </div>
-            <div class="form-floating">
-                <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="gender" required>
-                <option selected disabled>None</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Others">Others</option>
-                </select>
-                <label for="floatingSelect">Select Gender</label>
-            </div>    
-            <div class="form-floating my-2">
-                <textarea class="form-control" placeholder="Enter Your Address here" id="floatingTextarea2" style="height: 100px" name="address" required></textarea>
-                <label for="floatingTextarea2">Resedential Address</label>
-            </div>
-            <div class="form-floating">
-                <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="city" required>
-                <option selected disabled>None</option>
-                {% for city in cities %}
-                <option>{{city.city}}</option>
-                {% endfor %}
-                </select>
-                <label for="floatingSelect">Select City</label>
-            </div>
-            <div class="form-floating my-2 ">
-                <input type="phone" class="form-control" id="floatingInput" name="contactno" placeholder="phone number" required>
-                <label for="floatingInput">Contact Number</label>
-            </div>
-            <div class="form-floating my-2 ">
-                <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" required>
-                <label for="floatingInput">Email address</label>
-            </div>
-            <select class="form-select my-2" size = "3" multiple aria-label="multiple select example" name="qualification" required>
-                <option selected disabled>Select Qualification</option>
-                {% for degree in qualification %}
-                <option>{{degree.qualification}}</option>
-                {% endfor %}
-            </select>
-            <div class="form-floating my-2 ">
-                <input type="file" class="form-control" id="file-upload" accept=".pdf" name="file" placeholder="Upload File" required>
-                <label for="floatingInput">Upload File</label>
-            </div>
-            <div class="g-recaptcha" data-sitekey="6LfXwWggAAAAAPB2Q4C4qzhEPFjMYLyBo7H3V8DE"></div>
-            <br>
-            <div class="col-auto">
-            <button type="submit" onclick="return VerifyUploadSizeIsOK()" class="btn btn-primary mb-3">Submit</button>
-            </div>
-        </form>
+<div style="display: flex; justify-content: space-around; align-items: flex-start; padding: 2rem 1rem;">
+    <!-- Left Side: Image with Info Card -->
+    <div style="padding: 3% 2% 0% 2%; flex: 0 0 45%; max-width: 500px;">
+        <img src="{% static 'images/registration.png' %}" height="400" width="400" alt="Registration" style="width: 100%; height: auto; max-width: 400px;">
         
+        <!-- Benefits Card Below Image -->
+        <div class="card mt-4" style="background: rgba(255, 255, 255, 0.95);">
+            <div class="card-body">
+                <h5 style="color: var(--primary-color); font-weight: 700; margin-bottom: 1rem;">
+                    🎯 Why Register With Us?
+                </h5>
+                <ul style="line-height: 2; color: var(--text-dark); margin: 0; padding-left: 1.25rem;">
+                    <li>Access to exclusive job opportunities</li>
+                    <li>Direct connection with top employers</li>
+                    <li>Profile visibility to HR managers</li>
+                    <li>Quick application process</li>
+                    <li>Career growth opportunities</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Side: Registration Form -->
+    <div class="form-container" style="flex: 0 0 50%; max-width: 600px; padding: 0 2rem;">
+        <!-- Form Header -->
+        <div class="text-center mb-4">
+            <h1 style="color: white; font-weight: 700; font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); margin-bottom: 0.5rem;">
+                Job Seeker Registration
+            </h1>
+            <p style="color: rgba(255,255,255,0.9); font-size: 1rem; margin-bottom: 2rem;">
+                Fill in your details to get started with your career journey
+            </p>
+        </div>
+
+        <!-- Form Card -->
+        <div style="background: rgba(255, 255, 255, 0.95); padding: 2.5rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); backdrop-filter: blur(10px);">
+            <form method="POST" action="\registration" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <!-- Personal Information Section -->
+                <div class="mb-4">
+                    <h6 style="color: var(--primary-color); font-weight: 700; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--primary-color);">
+                        📋 Personal Information
+                    </h6>
+                    
+                    <div class="form-floating my-3">
+                        <input type="text" class="form-control" id="name" placeholder="name" name="name" required>
+                        <label for="name">Full Name *</label>
+                    </div>
+                    
+                    <div class="form-floating my-3">
+                        <select class="form-select" id="gender" aria-label="Gender" name="gender" required>
+                            <option selected disabled value="">Choose...</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                        <label for="gender">Gender *</label>
+                    </div>
+                </div>
+
+                <!-- Contact Information Section -->
+                <div class="mb-4">
+                    <h6 style="color: var(--success-color); font-weight: 700; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--success-color);">
+                        📍 Contact Details
+                    </h6>
+                    
+                    <div class="form-floating my-3">
+                        <textarea class="form-control" placeholder="Enter Your Address here" id="address" style="height: 100px" name="address" required></textarea>
+                        <label for="address">Residential Address *</label>
+                    </div>
+                    
+                    <div class="form-floating my-3">
+                        <select class="form-select" id="city" aria-label="City" name="city" required>
+                            <option selected disabled value="">Choose your city...</option>
+                            {% for city in cities %}
+                            <option>{{city.city}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="city">City *</label>
+                    </div>
+                    
+                    <div class="form-floating my-3">
+                        <input type="tel" class="form-control" id="contactno" name="contactno" placeholder="phone number" pattern="[0-9]{10}" required>
+                        <label for="contactno">Contact Number *</label>
+                        <small class="text-muted">Enter 10-digit mobile number</small>
+                    </div>
+                    
+                    <div class="form-floating my-3">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                        <label for="email">Email Address *</label>
+                    </div>
+                </div>
+
+                <!-- Educational Information Section -->
+                <div class="mb-4">
+                    <h6 style="color: var(--info-color); font-weight: 700; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--info-color);">
+                        🎓 Educational Qualifications
+                    </h6>
+                    
+                    <label for="qualification" class="form-label" style="font-size: 0.9rem; color: var(--text-dark);">
+                        Select Your Qualifications * <small class="text-muted">(Hold Ctrl/Cmd to select multiple)</small>
+                    </label>
+                    <select class="form-select my-2" size="3" multiple aria-label="multiple select" name="qualification" id="qualification" required style="min-height: 120px;">
+                        {% for degree in qualification %}
+                        <option value="{{degree.qualification}}">{{degree.qualification}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Document Upload Section -->
+                <div class="mb-4">
+                    <h6 style="color: var(--warning-color); font-weight: 700; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--warning-color);">
+                        📄 Resume Upload
+                    </h6>
+                    
+                    <div class="my-3">
+                        <label for="file-upload" class="form-label">Upload Resume (PDF only, Max 1MB) *</label>
+                        <input type="file" class="form-control" id="file-upload" accept=".pdf" name="file" required>
+                        <small class="text-muted d-block mt-2">
+                            💡 Tip: Keep your resume updated and under 1MB for faster processing
+                        </small>
+                    </div>
+                </div>
+
+                <!-- reCAPTCHA -->
+                <div class="my-4 d-flex justify-content-center">
+                    <div class="g-recaptcha" data-sitekey="6LfXwWggAAAAAPB2Q4C4qzhEPFjMYLyBo7H3V8DE"></div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid gap-2 mt-4">
+                    <button type="submit" onclick="return VerifyUploadSizeIsOK()" class="btn btn-primary btn-lg" style="padding: 1rem; font-weight: 700; font-size: 1.1rem;">
+                        🚀 Register Now
+                    </button>
+                    <small class="text-center text-muted mt-2">
+                        * Required fields
+                    </small>
+                </div>
+            </form>
+        </div>
+
+        <!-- Help Section Below Form -->
+        <div class="card mt-4" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);">
+            <div class="card-body text-center">
+                <p style="color: white; margin: 0; font-size: 0.95rem;">
+                    Need help? <a href="/contact" style="color: white; font-weight: 600; text-decoration: underline;">Contact our support team</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section Below Form -->
+<div class="container my-5">
+    <h2 class="text-center mb-5" style="color: white; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+        What Happens Next?
+    </h2>
+    
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <div class="stat-icon bg-primary mx-auto mb-3">1️⃣</div>
+                    <h5 style="font-weight: 600; margin-bottom: 1rem;">Profile Review</h5>
+                    <p style="color: var(--text-muted); margin: 0;">Our HR team reviews your profile within 24-48 hours</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <div class="stat-icon bg-success mx-auto mb-3">2️⃣</div>
+                    <h5 style="font-weight: 600; margin-bottom: 1rem;">Job Matching</h5>
+                    <p style="color: var(--text-muted); margin: 0;">We match your profile with suitable job openings</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <div class="stat-icon bg-info mx-auto mb-3">3️⃣</div>
+                    <h5 style="font-weight: 600; margin-bottom: 1rem;">Interview Call</h5>
+                    <p style="color: var(--text-muted); margin: 0;">Get interview calls from interested employers</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <script type="text/javascript">
-    function VerifyUploadSizeIsOK()
-    {
+    function VerifyUploadSizeIsOK() {
        var UploadFieldID = "file-upload";
-       var MaxSizeInBytes = 5242880/5;
+       var MaxSizeInBytes = 5242880/5; // 1MB
        var fld = document.getElementById(UploadFieldID);
-       if( fld.files && fld.files.length == 1 && fld.files[0].size > MaxSizeInBytes )
-       {
-          alert("The file size must be no more than " + parseInt(MaxSizeInBytes/1024/1024) + "MB");
+       if(fld.files && fld.files.length == 1 && fld.files[0].size > MaxSizeInBytes) {
+          alert("⚠️ The file size must be no more than " + parseInt(MaxSizeInBytes/1024/1024) + "MB\n\nPlease upload a smaller PDF file.");
           return false;
        }
        return true;
-    } // function VerifyUploadSizeIsOK()
+    }
+
+    // Optional: Add form validation feedback
+    (function() {
+        'use strict';
+        var forms = document.querySelectorAll('form');
+        Array.prototype.slice.call(forms).forEach(function(form) {
+            form.addEventListener('submit', function(event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
 </script>
 
 {% endblock body %}

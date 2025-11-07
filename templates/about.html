@@ -1,36 +1,122 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}About{% endblock title %}
 
 {% block body %}
-<style>
-    .heading {
-      text-align: center;
-      color: rgba(255,255,255,1);
-      font-size: 150px;
-      transition: 1.5s;
-    }
-    
-    .para {
-      text-align: center;
-      color: rgba(255,255,255,0.2);
-      font-size: 20px;
-      padding: 0% 10% 10%;
-      transition: 1.5s;
-    }
-    
-    .para:hover {
-      text-align: center;
-      color: rgba(255,255,255,1);
-      font-size: 20px;
-      padding: 2px 10% 10%;
-      transition: 1.5s;
-    }
-    
-    </style>
-    
-    <div id="content">
+    <div id="content" style="margin-left: auto !important; margin-right: auto !important; max-width: 1200px;">
+      <!-- Main Heading & Description -->
       <p class="heading">ABOUT US</p>
-      <p class="para">Our rich industry experience and knowledge has enabled us offer a variety of Electrical Products such as Stabilizer, Transformer, etc. In addition to this, we also provide Annual Maintenance Services for the same. With an aim to provide customers with world class products, we use the finest quality raw material and sophisticated technology in our manufacturing process. We ensure that the offered products are in complete compliance with the defined industry standards
+      <p class="para">Our rich industry experience and knowledge has enabled us offer a variety of Electrical Products such as Stabilizer, Transformer, etc. In addition to this, we also provide Annual Maintenance Services for the same. With an aim to provide customers with world class products, we use the finest quality raw material and sophisticated technology in our manufacturing process. We ensure that the offered products are in complete compliance with the defined industry standards</p>
+      
+      <!-- Statistics Section -->
+      <div class="row mt-5 mb-4">
+        <div class="col-md-3 col-6 mb-3">
+          <div class="stat-card primary text-center">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+        </div>
+        
+        <div class="col-md-3 col-6 mb-3">
+          <div class="stat-card success text-center">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Employees Managed</div>
+          </div>
+        </div>
+        
+        <div class="col-md-3 col-6 mb-3">
+          <div class="stat-card warning text-center">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Corporate Clients</div>
+          </div>
+        </div>
+        
+        <div class="col-md-3 col-6 mb-3">
+          <div class="stat-card info text-center">
+            <div class="stat-number">99%</div>
+            <div class="stat-label">Client Satisfaction</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Values -->
+      <div style="text-align: center" class="row mt-5">
+        <div class="col-md-4 mb-3">
+          <div class="card stat-card primary">
+            <div class="stat-icon bg-primary">🎯</div>
+            <div class="stat-content">
+              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Our Mission</h3>
+              <p style="margin: 0; color: var(--text-muted);">Providing world-class HR solutions with cutting-edge technology</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4 mb-3">
+          <div class="card stat-card success">
+            <div class="stat-icon bg-success">🏆</div>
+            <div class="stat-content">
+              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Excellence</h3>
+              <p style="margin: 0; color: var(--text-muted);">Committed to highest quality standards in every product</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-4 mb-3">
+          <div class="card stat-card info">
+            <div class="stat-icon bg-info">💡</div>
+            <div class="stat-content">
+              <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Innovation</h3>
+              <p style="margin: 0; color: var(--text-muted);">Leveraging technology for paperless office solutions</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- What We Offer -->
+      <div class="mt-5">
+        <h2 class="text-center mb-4" style="color: white; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">What We Offer</h2>
+        
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 style="color: var(--primary-color); margin-bottom: 1rem;">📋 Digital HR Management</h5>
+                <ul style="line-height: 2;">
+                  <li>Employee Records Management</li>
+                  <li>Attendance Tracking</li>
+                  <li>Leave Management</li>
+                  <li>Performance Reviews</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 style="color: var(--secondary-color); margin-bottom: 1rem;">⚡ Electrical Solutions</h5>
+                <ul style="line-height: 2;">
+                  <li>Stabilizers</li>
+                  <li>Transformers</li>
+                  <li>Annual Maintenance</li>
+                  <li>24/7 Support</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="mt-5 text-center">
+        <div class="card" style="background: linear-gradient(135deg, #0c4a6e 0%, #0f766e 100%); border: none;">
+          <div class="card-body py-5">
+            <h2 style="color: white; margin-bottom: 1rem; font-weight: 700;">Ready to Transform Your HR?</h2>
+            <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 2rem;">Join hundreds of companies using Digital HR for paperless office management</p>
+            <a href="/contact" class="btn btn-lg" style="background: white; color: var(--primary-color); padding: 1rem 2rem; font-weight: 600;">Contact Us Today</a>
+          </div>
+        </div>
+      </div>
     </div>
 {% endblock body %}

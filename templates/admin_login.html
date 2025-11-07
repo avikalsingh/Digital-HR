@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Admin Login{% endblock title %}
 
 {% block body %}
 
-<div class="text-center" style="padding: 25px 30%; margin:flex">
+<div class="text-center" style="padding: 1rem; margin:flex">
     
     <main class="form-signin">
       <form method = "POST", action="/admin_login">
         {% csrf_token %}
-        <img class="my-4" src ="..\static\images\logo4.png" alt="" width="72" height="72">
+        <img class="my-4" src="{% static 'images/logo4.png' %}" alt="" width="72" height="72">
         <h1 class="h3 mb-3 fw-normal" id="title">Please sign in</h1>
     
         <div class="form-floating mb-2">

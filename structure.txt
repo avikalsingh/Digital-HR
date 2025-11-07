@@ -1,0 +1,80 @@
+├── README.md
+├── Training_Project
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── home
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_contact_date.py
+│   │   ├── 0003_alter_contact_contactno_alter_contact_email.py
+│   │   ├── 0004_jobseeker.py
+│   │   ├── 0005_city.py
+│   │   ├── 0006_qualification.py
+│   │   ├── 0007_employee.py
+│   │   ├── 0008_alter_employee_empid.py
+│   │   ├── 0009_remove_jobseeker_company_remove_jobseeker_skills_and_more.py
+│   │   ├── 0010_remove_jobseeker_experience.py
+│   │   ├── 0011_profile.py
+│   │   ├── 0012_delete_profile.py
+│   │   ├── 0013_jobseeker_file.py
+│   │   ├── 0014_alter_jobseeker_file.py
+│   │   ├── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── manage.py
+├── print_structure.py
+├── static
+│   ├── css
+│   │   └── modern-hr.css
+│   └── images
+│       ├── JobSeeker.jpg
+│       ├── accept.png
+│       ├── bg.jpg
+│       ├── bg1.png
+│       ├── contact_image.png
+│       ├── home_image.png
+│       ├── home_image1.png
+│       ├── job_admin.png
+│       ├── logo.png
+│       ├── logo1.png
+│       ├── logo2.png
+│       ├── logo3.png
+│       ├── logo4.png
+│       ├── mail.png
+│       ├── pass.gif
+│       ├── passs.png
+│       ├── registration.png
+│       ├── slider_1.jpg
+│       ├── slider_2.gif
+│       ├── slider_3.jpg
+│       └── slider_4.jpg
+├── structure.txt
+└── templates
+    ├── about.html
+    ├── admin_login.html
+    ├── admin_zone
+    │   ├── admin_home.html
+    │   ├── change_password.html
+    │   ├── city.html
+    │   ├── contact_mail.html
+    │   ├── contact_view.html
+    │   ├── email_handler.html
+    │   ├── emp_manage.html
+    │   ├── emp_reg.html
+    │   ├── generate_mail.html
+    │   ├── jobseeker.html
+    │   ├── qualification.html
+    │   └── update_emp.html
+    ├── base.html
+    ├── contact.html
+    ├── index.html
+    └── registration.html
