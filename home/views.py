@@ -20,7 +20,6 @@ def index(request):
 def about(request):
     return render(request, 'about.html')
 
-# admin@gmail.com Avi@1234
 
 def registration(request):
     if request.method == "POST":

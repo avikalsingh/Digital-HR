@@ -1,40 +1,230 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Home{% endblock title %}
 
 {% block body %}
-<style>
-.heading {
-  text-align: center;
-  color: rgba(255,255,255,1);
-  font-size: 150px;
-  transition: 1.5s;
-}
 
-.para {
-  text-align: center;
-  color: rgba(255,255,255,0.2);
-  font-size: 18px;
-  padding: 0% 10% 10%;
-  transition: 1.5s;
-}
-
-.para:hover {
-  text-align: center;
-  color: rgba(255,255,255,1);
-  font-size: 18px;
-  padding: 2px 10% 10%;
-  transition: 1.5s;
-}
-
-</style>
 <div style="display: flex; justify-content: space-around">
   <div style="padding: 5% 0% 0% 3%">
-    <img src="../static/images/home_image1.png" height=400px weight=400px>
+    <img src="{% static 'images/home_image1.png' %}" height="400" width="400" alt="Digital HR">
   </div>
   <div id="content">
     <p class="heading">DIGITAL HR</p>
-    <p class="para">This project is made for the ElectrotechEngg Solutions, Roorkie who want to make implement ‘PAPERLESS OFFICE’ in field of Human Resource Management. The purpose of the project in organizational perspective is to generate a fully computerized human resource system. All Data of the related share is needed to be present on the system so that whenever there is a need to view process or extract any information it can be done. It saves time and avoids losses.</p>
+    <p class="para">Transform your HR operations with Digital HR, a comprehensive paperless office solution designed for ElectrotechEngg Solutions, Roorkee. Our fully computerized human resource management system centralizes all employee data, enabling instant access, processing, and information extraction. Experience streamlined workflows, reduced operational costs, and zero data loss. Welcome to the future of HR management, efficient, secure, and entirely digital.
+</p>
   </div>
 </div>
+
+<!-- Features Section -->
+<div class="container my-5">
+  <h2 class="text-center mb-5" style="color: white; font-weight: 700; font-size: 2.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+    Why Choose Digital HR?
+  </h2>
+  
+  <div class="row g-4">
+    <div class="col-md-3 col-sm-6">
+      <div class="card stat-card primary text-center h-100">
+        <div class="stat-icon bg-primary mx-auto mb-3">📋</div>
+        <h5 style="font-weight: 600; margin-bottom: 0.75rem;">Paperless Office</h5>
+        <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Complete digital transformation of HR processes</p>
+      </div>
+    </div>
+    
+    <div class="col-md-3 col-sm-6">
+      <div class="card stat-card success text-center h-100">
+        <div class="stat-icon bg-success mx-auto mb-3">⚡</div>
+        <h5 style="font-weight: 600; margin-bottom: 0.75rem;">Real-Time Access</h5>
+        <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Access employee data anytime, anywhere</p>
+      </div>
+    </div>
+    
+    <div class="col-md-3 col-sm-6">
+      <div class="card stat-card info text-center h-100">
+        <div class="stat-icon bg-info mx-auto mb-3">🔒</div>
+        <h5 style="font-weight: 600; margin-bottom: 0.75rem;">Secure & Safe</h5>
+        <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Enterprise-grade security for your data</p>
+      </div>
+    </div>
+    
+    <div class="col-md-3 col-sm-6">
+      <div class="card stat-card warning text-center h-100">
+        <div class="stat-icon bg-warning mx-auto mb-3">📊</div>
+        <h5 style="font-weight: 600; margin-bottom: 0.75rem;">Analytics</h5>
+        <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">Powerful insights and reporting tools</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Statistics Section -->
+<div class="container my-5">
+  <div class="row g-4">
+    <div class="col-md-3 col-6">
+      <div class="stat-card primary text-center">
+        <div class="stat-number" style="color: var(--primary-color);">10+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+    </div>
+    
+    <div class="col-md-3 col-6">
+      <div class="stat-card success text-center">
+        <div class="stat-number" style="color: var(--success-color);">500+</div>
+        <div class="stat-label">Employees Managed</div>
+      </div>
+    </div>
+    
+    <div class="col-md-3 col-6">
+      <div class="stat-card warning text-center">
+        <div class="stat-number" style="color: var(--warning-color);">50+</div>
+        <div class="stat-label">Corporate Clients</div>
+      </div>
+    </div>
+    
+    <div class="col-md-3 col-6">
+      <div class="stat-card info text-center">
+        <div class="stat-number" style="color: var(--info-color);">99%</div>
+        <div class="stat-label">Satisfaction Rate</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Key Features Section -->
+<div class="container my-5">
+  <h2 class="text-center mb-5" style="color: white; font-weight: 700; font-size: 2.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+    Core Features
+  </h2>
+  
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="d-flex align-items-start">
+            <div class="stat-icon bg-primary me-3 flex-shrink-0" style="width: 50px; height: 50px; font-size: 1.5rem;">👥</div>
+            <div>
+              <h5 style="color: var(--primary-color); font-weight: 600; margin-bottom: 0.75rem;">Employee Management</h5>
+              <p style="color: var(--text-muted); margin: 0; line-height: 1.6;">
+                Comprehensive employee records, profile management, and document storage. Track employee journey from onboarding to exit.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="d-flex align-items-start">
+            <div class="stat-icon bg-success me-3 flex-shrink-0" style="width: 50px; height: 50px; font-size: 1.5rem;">📅</div>
+            <div>
+              <h5 style="color: var(--success-color); font-weight: 600; margin-bottom: 0.75rem;">Attendance & Leave</h5>
+              <p style="color: var(--text-muted); margin: 0; line-height: 1.6;">
+                Automated attendance tracking, leave management system with approval workflows. Real-time attendance reports.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="d-flex align-items-start">
+            <div class="stat-icon bg-info me-3 flex-shrink-0" style="width: 50px; height: 50px; font-size: 1.5rem;">💼</div>
+            <div>
+              <h5 style="color: var(--info-color); font-weight: 600; margin-bottom: 0.75rem;">Recruitment</h5>
+              <p style="color: var(--text-muted); margin: 0; line-height: 1.6;">
+                Streamlined job seeker management, application tracking, and candidate evaluation system.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="d-flex align-items-start">
+            <div class="stat-icon bg-warning me-3 flex-shrink-0" style="width: 50px; height: 50px; font-size: 1.5rem;">📈</div>
+            <div>
+              <h5 style="color: var(--warning-color); font-weight: 600; margin-bottom: 0.75rem;">Reports & Analytics</h5>
+              <p style="color: var(--text-muted); margin: 0; line-height: 1.6;">
+                Generate comprehensive reports, track KPIs, and make data-driven decisions for your organization.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Call to Action Section -->
+<div class="container my-5">
+  <div class="card" style="background: linear-gradient(135deg, #0c4a6e 0%, #0f766e 100%); border: none; overflow: hidden; position: relative;">
+    <div class="card-body text-center py-5 px-4" style="position: relative; z-index: 1;">
+      <h2 style="color: white; font-weight: 700; font-size: 2.5rem; margin-bottom: 1rem;">
+        Ready to Go Paperless?
+      </h2>
+      <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+        Join ElectrotechEngg Solutions in transforming your HR operations. Start your digital journey today!
+      </p>
+      <div class="d-flex flex-wrap justify-content-center gap-3">
+        <a href="/registration" class="btn btn-lg" style="background: white; color: var(--primary-color); padding: 1rem 2.5rem; font-weight: 700; border: none;">
+          Register as Job Seeker
+        </a>
+        <a href="/contact" class="btn btn-lg" style="background: transparent; border: 3px solid white; color: white; padding: 1rem 2.5rem; font-weight: 700;">
+          Contact Us
+        </a>
+      </div>
+    </div>
+    
+    <!-- Decorative Background Elements -->
+    <div style="position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); top: -150px; right: -150px; border-radius: 50%;"></div>
+    <div style="position: absolute; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); bottom: -100px; left: -100px; border-radius: 50%;"></div>
+  </div>
+</div>
+
+<!-- Quick Links Section -->
+<div class="container my-5 pb-5">
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card text-center h-100">
+        <div class="card-body">
+          <div class="stat-icon bg-primary mx-auto mb-3">ℹ️</div>
+          <h5 style="font-weight: 600; margin-bottom: 1rem;">Learn More</h5>
+          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Discover how Digital HR can transform your organization</p>
+          <a href="/about" class="btn btn-outline-primary">About Us</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card text-center h-100">
+        <div class="card-body">
+          <div class="stat-icon bg-success mx-auto mb-3">👔</div>
+          <h5 style="font-weight: 600; margin-bottom: 1rem;">Find Opportunities</h5>
+          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Browse available positions and apply online</p>
+          <a href="/registration" class="btn btn-outline-primary">Register Now</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card text-center h-100">
+        <div class="card-body">
+          <div class="stat-icon bg-info mx-auto mb-3">📞</div>
+          <h5 style="font-weight: 600; margin-bottom: 1rem;">Get in Touch</h5>
+          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Have questions? We're here to help you</p>
+          <a href="/contact" class="btn btn-outline-primary">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock body %}
