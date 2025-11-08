@@ -1,36 +1,216 @@
 {% extends 'admin_zone/admin_home.html' %}
+{% load static %}
 
 {% block title %}Generate Mail{% endblock title %}
 
 {% block body %}
-<div style="display: flex; justify-content: space-around">
-    <div style="padding: 6% 0% 0% 2%">
-      <img src="../static/images/mail.png" height=300px weight=300px>
-    </div>
-    <div class="form-container mx-4 my-4" style="width: 40%">
-        <h1 style="text-align: center" id="title">Generate Mail</h1>
-        <form method="POST" action="\generate_mail">
-            {% csrf_token %}
-            <div class="form-floating my-2 ">
-                <input type="text" class="form-control" id="floatingInput" placeholder="name" name="name" required>
-                <label for="floatingInput">Name</label>
+
+<div style="background: linear-gradient(135deg, #082f49 0%, #0c4a6e 40%, #0f766e 100%); min-height: calc(100vh - 200px); padding: 2rem 1rem; display: flex; align-items: center; justify-content: center;">
+    <div style="max-width: 1000px; width: 100%;">
+        
+        <!-- Page Header -->
+        <div class="card mb-4" style="background: rgba(255, 255, 255, 0.95); border: none; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); text-align: center;">
+            <div class="card-body py-4 px-5">
+                <h1 style="font-size: 2rem; font-weight: 700; color: var(--primary-color); margin: 0;" id="title">📧 Send Email</h1>
+                <p style="color: var(--text-muted); margin-top: 0.5rem; margin-bottom: 0;">Send customized emails to employees and job seekers</p>
             </div>
-            <div class="form-floating my-2 ">
-                <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" required>
-                <label for="floatingInput">Email address</label>
+        </div>
+
+        <!-- Main Content: Image and Form Side by Side -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+            
+            <!-- Left: Mail Image -->
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <img src="{% static 'images/mail.png' %}" height="300" width="300" alt="Generate Mail" style="width: 100%; max-width: 350px; height: auto; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
             </div>
-            <div class="form-floating my-2 ">
-                <input type="text" class="form-control" value="ElectroTech Recruitment" id="floatingInput" placeholder="name" name="subject" required>
-                <label for="floatingInput">Subject</label>
+
+            <!-- Right: Email Form -->
+            <div class="card" style="background: rgba(255, 255, 255, 0.95); border: none; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+                <div class="card-body p-5">
+                    <h3 style="color: var(--primary-color); font-weight: 700; margin-bottom: 1.5rem; text-align: center; font-size: 1.3rem;">✉️ Compose Email</h3>
+                    
+                    <form method="POST" action="\generate_mail">
+                        {% csrf_token %}
+                        
+                        <!-- Recipient Name -->
+                        <div class="form-floating my-3">
+                            <input type="text" class="form-control" id="name" placeholder="Recipient Name" name="name" required style="padding-top: 1.625rem !important;">
+                            <label for="name">Recipient Name *</label>
+                            {% comment %} <small class="text-muted">Who are you sending this to?</small> {% endcomment %}
+                        </div>
+
+                        <!-- Email Address -->
+                        <div class="form-floating my-3">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                            <label for="email">Email Address *</label>
+                            {% comment %} <small class="text-muted">Recipient's email address</small> {% endcomment %}
+                        </div>
+
+                        <!-- Subject -->
+                        <div class="form-floating my-3">
+                            <input type="text" class="form-control" id="subject" placeholder="Email Subject" name="subject" value="ElectroTech Recruitment" required style="padding-top: 1.625rem !important;">
+                            <label for="subject">Subject *</label>
+                            {% comment %} <small class="text-muted">Email subject line</small> {% endcomment %}
+                        </div>
+
+                        <!-- Message Body -->
+                        <div class="form-floating my-3">
+                            <textarea class="form-control" placeholder="Enter your message here" id="message" style="height: 150px; padding-top: 1.625rem !important;" name="message" required></textarea>
+                            <label for="message">Message *</label>
+                            {% comment %} <small class="text-muted">Your email message</small> {% endcomment %}
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid gap-2 mt-5">
+                            <button type="submit" class="btn btn-primary btn-lg" style="padding: 1rem; font-weight: 700; font-size: 1.1rem;">
+                                📤 Send Email
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Email Tips -->
+                    <div style="background: #eff6ff; border-left: 4px solid var(--info-color); padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
+                        <p style="color: var(--info-color); font-weight: 600; margin: 0 0 0.5rem 0; font-size: 0.9rem;">
+                            💡 Email Tips:
+                        </p>
+                        <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.85rem; color: var(--text-muted); line-height: 1.8;">
+                            <li>Keep the subject line clear and professional</li>
+                            <li>Be concise and well-structured in your message</li>
+                            <li>Include relevant details and links if needed</li>
+                            <li>Proofread before sending</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="form-floating my-2">
-                <textarea class="form-control" placeholder="Enter Your message here" id="floatingTextarea2" style="height: 100px" name="message" required></textarea>
-                <label for="floatingTextarea2">Message</label>
+        </div>
+
+        <!-- Email Templates Section -->
+        <div class="card mt-4" style="background: rgba(255, 255, 255, 0.95); border: none; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+            <div class="card-body p-5">
+                <h3 style="color: var(--primary-color); font-weight: 700; margin-bottom: 1.5rem; font-size: 1.3rem;">📋 Email Templates</h3>
+                
+                <div class="row g-3">
+                    <!-- Welcome Template -->
+                    <div class="col-md-6">
+                        <div class="card border-0" style="background: #f9fafb; border-radius: 15px;">
+                            <div class="card-body">
+                                <h6 style="color: var(--primary-color); font-weight: 600; margin-bottom: 1rem;">🎉 Welcome Email</h6>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0; line-height: 1.6;">
+                                    "Subject: Welcome to ElectroTech Recruitment<br>
+                                    Dear [Name], Welcome to our recruitment platform. We are excited to have you on board and look forward to helping you find your next opportunity."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Opportunity Template -->
+                    <div class="col-md-6">
+                        <div class="card border-0" style="background: #f9fafb; border-radius: 15px;">
+                            <div class="card-body">
+                                <h6 style="color: var(--primary-color); font-weight: 600; margin-bottom: 1rem;">🎯 Job Opportunity</h6>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0; line-height: 1.6;">
+                                    "Subject: New Job Opportunity at ElectroTech<br>
+                                    Dear [Name], We have a new position that matches your profile. Please review the attached job description and let us know if you're interested."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interview Invitation Template -->
+                    <div class="col-md-6">
+                        <div class="card border-0" style="background: #f9fafb; border-radius: 15px;">
+                            <div class="card-body">
+                                <h6 style="color: var(--primary-color); font-weight: 600; margin-bottom: 1rem;">📞 Interview Invitation</h6>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0; line-height: 1.6;">
+                                    "Subject: Interview Invitation - ElectroTech<br>
+                                    Dear [Name], Congratulations! We would like to invite you for an interview. Please confirm your availability for [Date/Time]."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Status Update Template -->
+                    <div class="col-md-6">
+                        <div class="card border-0" style="background: #f9fafb; border-radius: 15px;">
+                            <div class="card-body">
+                                <h6 style="color: var(--primary-color); font-weight: 600; margin-bottom: 1rem;">✓ Status Update</h6>
+                                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0; line-height: 1.6;">
+                                    "Subject: Application Status Update<br>
+                                    Dear [Name], Thank you for your interest. We wanted to update you on your application status. We will be in touch soon."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-3">Send</button>
+        </div>
+
+        <!-- Email Stats -->
+        <div class="row g-3 mt-4" style="display: flex; justify-content: center;">
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm" style="background: white; border-radius: 15px; text-align: center; max-width: 280px; margin: 0 auto;">
+                    <div class="card-body py-4">
+                        <div style="font-size: 2rem; margin-bottom: 0.75rem;">📧</div>
+                        <h6 style="font-weight: 600; color: var(--primary-color); margin: 0;">Quick Mail</h6>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0.75rem 0 0 0;">Send instant emails</p>
+                    </div>
+                </div>
             </div>
-        </form>
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm" style="background: white; border-radius: 15px; text-align: center; max-width: 280px; margin: 0 auto;">
+                    <div class="card-body py-4">
+                        <div style="font-size: 2rem; margin-bottom: 0.75rem;">✏️</div>
+                        <h6 style="font-weight: 600; color: var(--info-color); margin: 0;">Customizable</h6>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0.75rem 0 0 0;">Personalize each email</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm" style="background: white; border-radius: 15px; text-align: center; max-width: 280px; margin: 0 auto;">
+                    <div class="card-body py-4">
+                        <div style="font-size: 2rem; margin-bottom: 0.75rem;">🔐</div>
+                        <h6 style="font-weight: 600; color: var(--success-color); margin: 0;">Secure</h6>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0.75rem 0 0 0;">Safe and encrypted</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
+{% comment %} 
+<style>
+    /* Form field styling */
+    .form-floating > input,
+    .form-floating > textarea {
+        padding-top: 1.625rem !important;
+        padding-bottom: 0.625rem !important;
+        background: rgba(255, 255, 255, 0.98) !important;
+        border: 2px solid #e5e7eb !important;
+        border-radius: 10px !important;
+        font-size: 0.95rem !important;
+    }
+    
+    .form-floating > input:focus,
+    .form-floating > textarea:focus {
+        border-color: var(--primary-color) !important;
+        box-shadow: 0 0 0 0.2rem rgba(12, 74, 110, 0.25) !important;
+    }
+    
+    .form-floating > label {
+        color: var(--text-dark) !important;
+        font-weight: 500 !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* Responsive Grid */
+    @media (max-width: 768px) {
+        div[style*="grid-template-columns"] {
+            grid-template-columns: 1fr !important;
+        }
+    }
+</style> {% endcomment %}
+
 {% endblock body %}

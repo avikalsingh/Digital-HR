@@ -1,0 +1,277 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Logging Out...</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #082f49 0%, #0c4a6e 40%, #0f766e 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .logout-container {
+            text-align: center;
+            color: white;
+        }
+
+        /* Animated Checkmark */
+        .checkmark-circle {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            animation: scaleIn 0.6s ease-out;
+        }
+
+        .checkmark-circle svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+        }
+
+        .circle {
+            stroke-dasharray: 314;
+            stroke-dashoffset: 314;
+            animation: circle 0.6s ease-out forwards;
+        }
+
+        .checkmark {
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: checkmark 0.6s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes circle {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes checkmark {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.7s forwards;
+            opacity: 0;
+        }
+
+        .logout-details {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.8s ease-out 0.9s forwards;
+            opacity: 0;
+        }
+
+        .logout-details p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            animation: none;
+            opacity: 1;
+        }
+
+        .logout-details strong {
+            color: #10b981;
+        }
+
+        .logout-message {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            animation: fadeInUp 0.8s ease-out 1.1s forwards;
+            opacity: 0;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .countdown {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #10b981;
+            animation: pulse 1s ease-in-out infinite;
+            margin-top: 1rem;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .timezone-badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-container">
+        <!-- Animated Checkmark -->
+        <div class="checkmark-circle">
+            <svg viewBox="0 0 52 52">
+                <circle class="circle" cx="26" cy="26" r="25" fill="none" stroke="#10b981" stroke-width="2"/>
+                <path class="checkmark" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+        </div>
+
+        <!-- Logout Heading -->
+        <h1>✓ Logged Out Successfully</h1>
+
+        <!-- Logout Details with Auto-Detected Timezone -->
+        <div class="logout-details">
+            <p><strong>Session ended:</strong> Your secure session has been terminated</p>
+            <p><strong>Session ID:</strong> {{ session_id|truncatechars:20 }}</p>
+            <p><strong>Local Time:</strong> <span id="local-time"></span></p>
+            <p><strong>Your Location:</strong> <span id="user-location"></span></p>
+            <div class="timezone-badge" id="timezone-badge"></div>
+        </div>
+
+        <!-- Message -->
+        <p>Thank you for using ElectroTech Admin Portal!</p>
+
+        <!-- Countdown -->
+        <div class="logout-message">
+            <span class="spinner"></span>
+            <span>Redirecting to login page...</span>
+        </div>
+        <div class="countdown" id="countdown">3</div>
+    </div>
+
+    <script>
+        // ========================================
+        // AUTO-DETECT USER'S LOCAL TIMEZONE
+        // ========================================
+        
+        (function() {
+            // Get user's local time
+            const now = new Date();
+            
+            // Format time nicely
+            const timeOptions = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            };
+            
+            const localTimeString = now.toLocaleString('en-US', timeOptions);
+            document.getElementById('local-time').textContent = localTimeString;
+            
+            // Get timezone name
+            const timezoneName = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            document.getElementById('timezone-badge').textContent = timezoneName;
+            
+            // Get timezone offset
+            const timezoneOffset = -now.getTimezoneOffset() / 60;
+            const offsetString = `UTC${timezoneOffset >= 0 ? '+' : ''}${timezoneOffset}`;
+            
+            // Try to get more specific location info
+            let locationString = timezoneName;
+            
+            // Parse timezone to get location
+            if (timezoneName.includes('/')) {
+                const parts = timezoneName.split('/');
+                const continent = parts[0];
+                const city = parts[1] ? parts[1].replace(/_/g, ' ') : '';
+                locationString = `${city}, ${continent} (${offsetString})`;
+            }
+            
+            document.getElementById('user-location').textContent = locationString;
+            
+        })();
+
+        // ========================================
+        // COUNTDOWN AND REDIRECT
+        // ========================================
+        
+        let countdown = 3;
+        const countdownEl = document.getElementById('countdown');
+
+        function updateCountdown() {
+            countdown--;
+            if (countdown >= 0) {
+                countdownEl.textContent = countdown;
+                setTimeout(updateCountdown, 1000);
+            } else {
+                window.location.href = "{{ redirect_url }}";
+            }
+        }
+
+        // Start countdown after animations complete
+        setTimeout(updateCountdown, 2000);
+    </script>
+</body>
+</html>

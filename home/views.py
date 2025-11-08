@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import logout, authenticate, login, update_session_auth_hash
 from django.core.mail import send_mail
+from django.utils import timezone
 import requests
 import json
 
@@ -30,7 +31,7 @@ def registration(request):
         contactno = request.POST.get('contactno')
         email = request.POST.get('email')
         qualification = request.POST.getlist('qualification')
-        file = request.POST.get('file')
+        file = request.FILES.get('file')
         jobseeker = JobSeeker(name=name, gender=gender, address=address, city=city, contactno=contactno, email=email, qualification=qualification, file=file, date=datetime.today())
         # reCaptcha 
         clientKey = request.POST['g-recaptcha-response']
@@ -54,6 +55,8 @@ def registration(request):
     return render(request, 'registration.html', {'cities': cities, 'qualification': qualification})
 
 def admin_login(request):
+    # Django Admin Login
+    # admin | Avi$$1234
     # admin@gmail.com | pwd: Qazwsx@@123
     if request.method=="POST":
         admin_email = request.POST.get('admin_email')
@@ -69,14 +72,47 @@ def admin_login(request):
     return render(request, 'admin_login.html')
 
 def admin_logout(request):
+    """
+    Logout view with animated logout screen
+    """
+    # Get session info before logging out
+    session_id = request.session.session_key or "No active session"
+    
+    # Log the user out
     logout(request)
-    return render(request, 'admin_login.html')
+    
+    # Pass data to logout template
+    context = {
+        'session_id': session_id,
+        'redirect_url': '/admin_login'  # Or wherever your login page is
+    }
+    
+    return render(request, 'admin_zone/logout.html', context)
 
 def admin_home(request):
     if request.user.is_anonymous:
         return redirect("admin_login")
-
-    return render(request, "admin_zone/admin_home.html")
+    # Get real metrics from database
+    total_employees = Employee.objects.count()
+    total_jobseekers = JobSeeker.objects.count()
+    total_messages = Contact.objects.count()
+    
+    # Optional: Get recent activity (last 24 hours)
+    from datetime import timedelta
+    from django.utils import timezone
+    
+    today = timezone.now()
+    yesterday = today - timedelta(days=1)
+    
+    recent_messages = Contact.objects.filter(date__gte=yesterday).count()
+    
+    context = {
+        'total_employees': total_employees,
+        'total_jobseekers': total_jobseekers,
+        'total_messages': total_messages,
+        'recent_messages': recent_messages,
+    }
+    return render(request, 'admin_zone/admin_home.html', context)
 
 def contact(request):
     if request.method == "POST":
