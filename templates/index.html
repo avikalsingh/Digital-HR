@@ -5,16 +5,584 @@
 
 {% block body %}
 
-<div style="display: flex; justify-content: space-around">
-  <div style="padding: 5% 0% 0% 3%">
-    <img src="{% static 'images/home_image1.png' %}" height="400" width="400" alt="Digital HR">
-  </div>
-  <div id="content">
-    <p class="heading">DIGITAL HR</p>
-    <p class="para">Transform your HR operations with Digital HR, a comprehensive paperless office solution designed for ElectrotechEngg Solutions, Roorkee. Our fully computerized human resource management system centralizes all employee data, enabling instant access, processing, and information extraction. Experience streamlined workflows, reduced operational costs, and zero data loss. Welcome to the future of HR management, efficient, secure, and entirely digital.
-</p>
-  </div>
+<!-- Hero Section - Enhanced -->
+<div class="hero-section-wrapper">
+    <!-- Animated Background -->
+    <div class="hero-bg-animated">
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+        <div class="bg-shape shape-3"></div>
+    </div>
+    
+    <!-- Main Hero Content -->
+    <div class="container hero-container">
+        <div class="row align-items-center">
+            <!-- Text Content -->
+            <div class="col-lg-6 hero-text-content">
+                                
+                <!-- Main Title -->
+                <h1 class="hero-main-title">
+                    <span class="title-main">DIGITAL HR</span>
+                    <span class="title-sub">Transform Your Workforce</span>
+                </h1>
+                
+                <!-- Typing Subtitle -->
+                <p class="hero-typing-text" id="hero-typing"></p>
+                
+                <!-- Description -->
+                <p class="hero-description">
+                    Transform your HR operations with <strong>Digital HR</strong>, a comprehensive paperless office solution 
+                    designed for <strong>ElectrotechEngg Solutions, Roorkee</strong>. Our fully computerized human resource 
+                    management system centralizes all employee data, enabling instant access, processing, and information extraction.
+                </p>
+                
+                <!-- Quick Features -->
+                <div class="hero-quick-features">
+                    <div class="quick-feature">
+                        <span class="feature-icon">⚡</span>
+                        <span>Streamlined</span>
+                    </div>
+                    <div class="quick-feature">
+                        <span class="feature-icon">💰</span>
+                        <span>Cost-Effective</span>
+                    </div>
+                    <div class="quick-feature">
+                        <span class="feature-icon">🔒</span>
+                        <span>Secure</span>
+                    </div>
+                    <div class="quick-feature">
+                        <span class="feature-icon">📊</span>
+                        <span>Analytics</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Visual/Image Side -->
+            <div class="col-lg-6 hero-visual">
+                <div class="hero-image-wrapper">
+                    <!-- Placeholder - replace with your actual image -->
+                    <div class="hero-illustration">
+                        <div class="illustration-card card-1">
+                            <div class="card-icon">📈</div>
+                            <div class="card-text">
+                                <div class="card-label">Growth</div>
+                                <div class="card-value">+45%</div>
+                            </div>
+                        </div>
+                        <div class="illustration-card card-2">
+                            <div class="card-icon">👥</div>
+                            <div class="card-text">
+                                <div class="card-label">Employees</div>
+                                <div class="card-value">500+</div>
+                            </div>
+                        </div>
+                        <div class="illustration-card card-3">
+                            <div class="card-icon">✓</div>
+                            <div class="card-text">
+                                <div class="card-label">Success</div>
+                                <div class="card-value">99%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scroll Down Indicator -->
+    <div class="scroll-down-indicator">
+        <div class="scroll-mouse">
+            <div class="scroll-wheel"></div>
+        </div>
+        <p>Scroll to explore</p>
+    </div>
 </div>
+
+<style>
+/* ================================
+   HERO SECTION STYLES
+   ================================ */
+
+.hero-section-wrapper {
+    position: relative;
+    background: linear-gradient(135deg, #0c4a6e 0%, #0f766e 50%, #082f49 100%);
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 4rem 0;
+}
+
+/* Animated Background Shapes */
+.hero-bg-animated {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.bg-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: float-shapes 20s infinite ease-in-out;
+}
+
+.shape-1 {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, #10b981, #3b82f6);
+    top: -200px;
+    right: -200px;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    bottom: -150px;
+    left: -150px;
+    animation-delay: 7s;
+}
+
+.shape-3 {
+    width: 350px;
+    height: 350px;
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    top: 40%;
+    left: 40%;
+    animation-delay: 14s;
+}
+
+@keyframes float-shapes {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(30px, -30px) rotate(120deg); }
+    66% { transform: translate(-30px, 30px) rotate(240deg); }
+}
+
+/* Hero Container */
+.hero-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Text Content */
+.hero-text-content {
+    color: white;
+    padding: 2rem 0;
+}
+
+/* Badge */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    animation: slideDown 0.8s ease-out;
+}
+
+.badge-icon {
+    font-size: 1.2rem;
+}
+
+/* Main Title */
+.hero-main-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    animation: slideUp 0.8s ease-out 0.2s both;
+}
+
+.title-main {
+    display: block;
+    color: white;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.title-sub {
+    display: block;
+    background: linear-gradient(135deg, #10b981 0%, #3b82f6 50%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradientMove 3s ease infinite;
+}
+
+@keyframes gradientMove {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Typing Text */
+.hero-typing-text {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 1.5rem;
+    min-height: 2rem;
+    animation: fadeIn 0.8s ease-out 0.4s both;
+}
+
+.hero-typing-text::after {
+    content: '|';
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Description */
+.hero-description {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 2rem;
+    animation: fadeIn 0.8s ease-out 0.6s both;
+}
+
+.hero-description strong {
+    color: #10b981;
+    font-weight: 700;
+}
+
+/* Quick Features */
+.hero-quick-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    animation: fadeIn 0.8s ease-out 0.8s both;
+}
+
+.quick-feature {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 0.6rem 1rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.quick-feature:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.feature-icon {
+    font-size: 1.1rem;
+}
+
+/* CTA Buttons */
+.hero-cta-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeIn 0.8s ease-out 1s both;
+}
+
+.btn-hero-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    font-size: 1.05rem;
+    font-weight: 700;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-hero-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(16, 185, 129, 0.4);
+    color: white;
+}
+
+.btn-hero-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 1.05rem;
+    font-weight: 700;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    text-decoration: none;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.btn-hero-secondary:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+/* Visual Side */
+.hero-visual {
+    animation: fadeIn 0.8s ease-out 0.5s both;
+}
+
+.hero-image-wrapper {
+    position: relative;
+    height: 500px;
+}
+
+.hero-illustration {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: floatUp 6s ease-in-out infinite;
+}
+
+@keyframes floatUp {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Floating Cards */
+.illustration-card {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: floatCard 3s ease-in-out infinite;
+}
+
+.card-1 {
+    top: 10%;
+    right: 10%;
+    animation-delay: 0s;
+}
+
+.card-2 {
+    bottom: 25%;
+    left: 5%;
+    animation-delay: 1s;
+}
+
+.card-3 {
+    top: 45%;
+    right: 5%;
+    animation-delay: 2s;
+}
+
+@keyframes floatCard {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+.card-icon {
+    font-size: 2rem;
+}
+
+.card-label {
+    font-size: 0.85rem;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.card-value {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #0c4a6e;
+}
+
+/* Scroll Down Indicator */
+.scroll-down-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    animation: fadeIn 1s ease-out 1.5s both;
+}
+
+.scroll-mouse {
+    width: 28px;
+    height: 45px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 25px;
+    position: relative;
+    margin: 0 auto 0.5rem;
+}
+
+.scroll-wheel {
+    width: 3px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 2px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollDown 2s infinite;
+}
+
+@keyframes scrollDown {
+    0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(12px); }
+}
+
+.scroll-down-indicator p {
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* Animations */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .hero-main-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-visual {
+        margin-top: 3rem;
+    }
+    
+    .hero-image-wrapper {
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section-wrapper {
+        min-height: auto;
+        padding: 3rem 0;
+    }
+    
+    .hero-main-title {
+        font-size: 2rem;
+    }
+    
+    .hero-typing-text {
+        font-size: 1.1rem;
+    }
+    
+    .hero-description {
+        font-size: 0.95rem;
+    }
+    
+    .hero-cta-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-hero-primary,
+    .btn-hero-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .illustration-card {
+        padding: 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .card-icon {
+        font-size: 1.5rem;
+    }
+}
+</style>
+
+<script>
+// Typing Effect
+const typingElement = document.getElementById('hero-typing');
+const phrases = [
+    "Streamline Your HR Operations 🚀",
+    "Go Completely Paperless 📄",
+    "Secure Your Employee Data 🔒",
+    "Boost Team Efficiency ⚡"
+];
+
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function typeEffect() {
+    const currentPhrase = phrases[phraseIndex];
+    
+    if (isDeleting) {
+        typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+    } else {
+        typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+    }
+
+    if (!isDeleting && charIndex === currentPhrase.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, 2000);
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(typeEffect, 500);
+    } else {
+        setTimeout(typeEffect, isDeleting ? 50 : 100);
+    }
+}
+
+setTimeout(typeEffect, 1000);
+</script>
 
 <!-- Features Section -->
 <div class="container my-5">
@@ -173,14 +741,6 @@
       <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
         Join ElectrotechEngg Solutions in transforming your HR operations. Start your digital journey today!
       </p>
-      <div class="d-flex flex-wrap justify-content-center gap-3">
-        <a href="/registration" class="btn btn-lg" style="background: white; color: var(--primary-color); padding: 1rem 2.5rem; font-weight: 700; border: none;">
-          Register as Job Seeker
-        </a>
-        <a href="/contact" class="btn btn-lg" style="background: transparent; border: 3px solid white; color: white; padding: 1rem 2.5rem; font-weight: 700;">
-          Contact Us
-        </a>
-      </div>
     </div>
     
     <!-- Decorative Background Elements -->

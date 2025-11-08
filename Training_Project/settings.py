@@ -134,8 +134,11 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_HOST = 'smtp.mail.yahoo.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'avikalsingh1@yahoo.co.in'
-EMAIL_HOST_PASSWORD = 'evshyhyzoutwdphl'
+EMAIL_HOST_USER = 'avikalgangwar1@gmail.com'
+EMAIL_HOST_PASSWORD = 'byyz vfjh jbfg olhd'
 EMAIL_USE_TLS = True 
+DEFAULT_FROM_EMAIL = 'avikalgangwar1@gmail.com'  # Same as EMAIL_HOST_USER
+SERVER_EMAIL = 'avikalgangwar1@gmail.com'
